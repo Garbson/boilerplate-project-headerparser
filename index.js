@@ -24,6 +24,20 @@ app.get('/api/hello', function (req, res) {
   res.json({ greeting: 'hello API' });
 });
 
+// ------------------------------------------------------------------
+// ----> INÍCIO DA LÓGICA DO REQUEST HEADER PARSER <----
+
+app.get('/api/whoami', function (req, res) {
+  res.json({
+    ipaddress: req.ip, // Pega o endereço de IP da requisição
+    language: req.headers['accept-language'], // Pega o cabeçalho de idioma
+    software: req.headers['user-agent'] // Pega o cabeçalho de software (navegador/SO)
+  });
+});
+
+// ----> FIM DA LÓGICA DO REQUEST HEADER PARSER <----
+// ------------------------------------------------------------------
+
 // listen for requests :)
 var listener = app.listen(process.env.PORT || 3000, function () {
   console.log('Your app is listening on port ' + listener.address().port);
